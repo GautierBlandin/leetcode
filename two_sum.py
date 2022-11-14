@@ -1,3 +1,17 @@
+def two_sum(numbers: list[float], target: float):
+    sorted_nums, indices = merge_sort(numbers)
+    i = 0
+    j = len(sorted_nums) - 1
+    while i < j:
+        i_j_sum = sorted_nums[i] + sorted_nums[j]
+        if i_j_sum == target:
+            return [indices[i], indices[j]]
+        elif i_j_sum < target:
+            i += 1
+        elif i_j_sum > target:
+            j -= 1
+
+
 def merge(l_1: list[float], l_2: list[float], indices_1: list[int], indices_2: list[int]) -> tuple[list[float], list[int]]:
     """
     Merge two sorted lists into a sorted list (all ascending order)
