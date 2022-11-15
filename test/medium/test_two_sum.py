@@ -1,4 +1,4 @@
-import two_sum
+from medium import two_sum
 
 
 def test_two_sum():
