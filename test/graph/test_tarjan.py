@@ -1,7 +1,7 @@
 from typing import Callable
 
 
-def tarjan_tester(tarjan: Callable[[list[list[int]]], list[set]], verbose=False):
+def tarjan_tester(tarjan: Callable[[list[list[int]]], list[set[int]]], verbose=False):
     """
     Verify that the input tarjan algorithm works correctly
 
