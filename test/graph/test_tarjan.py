@@ -1,4 +1,9 @@
 from typing import Callable
+import graph.tarjan as tarjan_file
+
+
+def test_tarjan():
+    tarjan_tester(tarjan_file.tarjan)
 
 
 def tarjan_tester(tarjan: Callable[[list[list[int]]], list[set[int]]], verbose=False):
@@ -25,7 +30,8 @@ def tarjan_tester(tarjan: Callable[[list[list[int]]], list[set[int]]], verbose=F
         {1, 2, 3},
         {4, 5},
         {6, 7},
-        {8}
+        {8},
+        {0}
     ]
 
     graph_2 = [
@@ -43,6 +49,7 @@ def tarjan_tester(tarjan: Callable[[list[list[int]]], list[set[int]]], verbose=F
         [10],
         [13],
         [14, 15],
+        [15],
         [12]
     ]
 
@@ -51,7 +58,8 @@ def tarjan_tester(tarjan: Callable[[list[list[int]]], list[set[int]]], verbose=F
         {6, 7, 8},
         {9},
         {10, 11},
-        {12, 13, 14, 15}
+        {12, 13, 14, 15},
+        {5}
     ]
 
     tests = [(graph_1, sccs_1),
