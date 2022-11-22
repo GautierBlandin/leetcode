@@ -53,7 +53,8 @@ def tarjan(graph: list[list[int]], debug=False) -> list[set[int]]:
 
                 if s == node:
                     break
-                s = stack.pop()
+                else:
+                    s = stack.pop()
 
             sccs.append(scc)
             if debug:
