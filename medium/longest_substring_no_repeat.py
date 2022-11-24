@@ -35,5 +35,3 @@ class BinarySearcher:
         new_high = (self.upper_limit + self.lower_limit + 1) // 2
         self.upper_limit = min(new_high, self.upper_limit - 1)
         self.upper_limit = new_high
-
-
