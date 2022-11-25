@@ -11,7 +11,7 @@ class BinarySearcher:
         key: The comparator function, taking an index from the sorted list and returning True if the final element
              is higher or equal, False if the final element is lower
     """
-    def __init__(self, sorted_list: list[X], key: Callable[[int], bool]):
+    def __init__(self, sorted_list: list[X], key: Callable[[list[X], int], bool]):
         self.lower_limit = 0
         self.upper_limit = len(sorted_list) - 1
         self.sorted_list = sorted_list
