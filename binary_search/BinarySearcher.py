@@ -5,7 +5,13 @@ X = TypeVar('X')
 
 
 class BinarySearcher:
-    def __init__(self, sorted_list: list[X], key: Callable[[X], bool]):
+    """
+    Attributes:
+        sorted_list: The sorted list over which to run the binary search
+        key: The comparator function, taking an index from the sorted list and returning True if the final element
+             is higher or equal, False if the final element is lower
+    """
+    def __init__(self, sorted_list: list[X], key: Callable[[int], bool]):
         self.lower_limit = 0
         self.upper_limit = len(sorted_list) - 1
         self.sorted_list = sorted_list
@@ -16,7 +22,7 @@ class BinarySearcher:
     def search(self):
         while not self.binary_search_done:
             middle = (self.upper_limit + self.lower_limit + 1) // 2
-            if self.key(self.sorted_list[middle]):
+            if self.key(middle):
                 self.higher()
             else:
                 self.lower()
