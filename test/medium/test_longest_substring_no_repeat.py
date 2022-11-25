@@ -1,8 +1,6 @@
 from typing import Callable
 
 import medium.longest_substring_no_repeat as longest_substring_no_repeat
-from medium.longest_substring_no_repeat import BinarySearcher
-
 
 def longest_substring_no_repeat_tester(longest_substring_no_repeat_callable: Callable[[str], int], verbose=0):
     tests = [
