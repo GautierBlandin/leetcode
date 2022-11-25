@@ -22,7 +22,7 @@ class BinarySearcher:
     def search(self):
         while not self.binary_search_done:
             middle = (self.upper_limit + self.lower_limit + 1) // 2
-            if self.key(middle):
+            if self.key(self.sorted_list, middle):
                 self.higher()
             else:
                 self.lower()
@@ -45,7 +45,7 @@ class BinarySearcher:
         self.upper_limit = new_high
         if self.lower_limit == self.upper_limit:
             self.binary_search_done = True
-            if self.key(self.sorted_list[self.lower_limit]):
+            if self.key(self.sorted_list, self.lower_limit):
                 self.result_index = self.lower_limit
             else:
                 self.result_index = self.lower_limit - 1
