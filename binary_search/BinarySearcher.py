@@ -8,7 +8,7 @@ class BinarySearcher:
     """
     Attributes:
         sorted_list: The sorted list over which to run the binary search
-        key: The comparator function, taking an index from the sorted list and returning True if the final element
+        key: The comparator function, taking the sorted list and an index and returning True if the final element
              is higher or equal, False if the final element is lower
     """
     def __init__(self, sorted_list: list[X], key: Callable[[list[X], int], bool]):
@@ -29,8 +29,6 @@ class BinarySearcher:
         return self.lower_limit
 
     def get_result_index(self):
-        if self.result_index is None:
-            raise Exception("Result not found")
         return self.result_index
 
     def higher(self):
