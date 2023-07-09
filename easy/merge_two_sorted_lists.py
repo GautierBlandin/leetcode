@@ -1,30 +1,42 @@
 class SortedListMerger:
+    def __init__(self):
+        self.i = 0
+        self.j = 0
+        self.list_i = []
+        self.list_j = []
+        self.result = []
+
     def merge(self, list_i, list_j):
-        result = []
-        i = 0
-        j = 0
-        while not self.lists_fully_iterated(i, j, list_i, list_j):
-            if self.both_lists_not_finished(i, j, list_i, list_j):
-                i, j = self.append_minimum_and_increment_index(i, j, list_i, list_j, result)
-            elif i < len(list_i):
-                result.append(list_i[i])
-                i += 1
-            elif j < len(list_j):
-                result.append(list_j[j])
-                j += 1
-        return result
+        self.i = 0
+        self.j = 0
+        self.list_i = list_i
+        self.list_j = list_j
+        self.result = []
+        while not self.lists_fully_iterated():
+            if self.both_lists_active():
+                self.append_minimum_and_increment_index()
+            else:
+                self.append_remaining_items()
+        return self.result
 
-    def lists_fully_iterated(self, i, j, list_i, list_j):
-        return i >= len(list_i) and j >= len(list_j)
+    def lists_fully_iterated(self):
+        return self.i >= len(self.list_i) and self.j >= len(self.list_j)
 
-    def both_lists_not_finished(self, i, j, list_i, list_j):
-        return i < len(list_i) and j < len(list_j)
+    def both_lists_active(self):
+        return self.i < len(self.list_i) and self.j < len(self.list_j)
 
-    def append_minimum_and_increment_index(self, i, j, list_i, list_j, result):
-        if list_i[i] < list_j[j]:
-            result.append(list_i[i])
-            i += 1
+    def append_minimum_and_increment_index(self):
+        if self.list_i[self.i] < self.list_j[self.j]:
+            self.result.append(self.list_i[self.i])
+            self.i += 1
         else:
-            result.append(list_j[j])
-            j += 1
-        return i, j
+            self.result.append(self.list_j[self.j])
+            self.j += 1
+
+    def  append_remaining_items(self):
+        if self.i < len(self.list_i):
+            self.result.extend(self.list_i[self.i:])
+            self.i = len(self.list_i)
+        elif self.j < len(self.list_j):
+            self.result.extend(self.list_j[self.j:])
+            self.j = len(self.list_j)
