@@ -3,7 +3,7 @@ class SortedListMerger:
         result = []
         list1_index = 0
         list2_index = 0
-        while list1_index < len(list1) or list2_index < len(list2):
+        while not self.lists_fully_iterated(list1_index, list2_index, list1, list2):
             if list1_index < len(list1) and list2_index < len(list2):
                 if list1[list1_index] < list2[list2_index]:
                     result.append(list1[list1_index])
@@ -18,3 +18,6 @@ class SortedListMerger:
                 result.append(list2[list2_index])
                 list2_index += 1
         return result
+
+    def lists_fully_iterated(self, i, j, list_i, list_j):
+        return i >= len(list_i) and j >= len(list_j)
