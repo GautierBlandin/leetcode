@@ -12,6 +12,7 @@ def test_merge_two_sorted_lists():
     assert merge_list_helper([[], [1, 2, 3]]) == [1, 2, 3]
     assert merge_list_helper([[1], [7], [5]]) == [1, 5, 7]
     assert merge_list_helper([[1, 4, 7], [2, 5, 6], [3, 9, 10, 11, 13]]) == [1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 13]
+    assert merge_list_helper([[1, 2], [3, 4], [5, 6], [7, 8]]) == [1, 2, 3, 4, 5, 6, 7, 8]
 
 
 def merge_list_helper(lists):

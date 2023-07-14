@@ -3,24 +3,33 @@ from utils.ListNode import ListNode
 
 class SortedListMerger:
     def __init__(self):
-        self.currents = []
-        self.heads = []
+        self.currents = None
+        self.heads = None
         self.result_head = None
         self.result_current = None
-        self.not_finished_lists_indexes = set()
+        self.not_finished_lists_indexes = None
 
     def merge(self, heads):
-        self.init_merge(heads)
+        self.divide_and_conquer(heads)
 
         while not self.lists_fully_iterated():
             self.append_minimum_and_increment()
         return self.result_head
+
+    def divide_and_conquer(self, heads):
+        if len(heads) > 3:
+            midpoint = len(heads) // 2
+            pre_merged_heads = [SortedListMerger().merge(heads[:midpoint]), SortedListMerger().merge(heads[midpoint:])]
+            self.init_merge(pre_merged_heads)
+        else:
+            self.init_merge(heads)
 
     def init_merge(self, heads):
         self.currents = heads
         self.heads = heads
         self.result_head = None
         self.result_current = None
+        self.not_finished_lists_indexes = set()
         for index, head in enumerate(heads):
             if head is not None:
                 self.not_finished_lists_indexes.add(index)
