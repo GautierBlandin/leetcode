@@ -7,6 +7,7 @@ class SortedListMerger:
         self.heads = []
         self.result_head = None
         self.result_current = None
+        self.not_finished_lists_indexes = set()
 
     def merge(self, heads):
         self.init_merge(heads)
@@ -20,12 +21,15 @@ class SortedListMerger:
         self.heads = heads
         self.result_head = None
         self.result_current = None
+        for index, head in enumerate(heads):
+            if head is not None:
+                self.not_finished_lists_indexes.add(index)
 
     def lists_fully_iterated(self):
-        for node in self.currents:
-            if node is not None:
-                return False
-        return True
+        if self.not_finished_lists_indexes:
+            return False
+        else:
+            return True
 
     def append_to_result(self, node):
         if self.result_head is None:
@@ -40,13 +44,16 @@ class SortedListMerger:
         min_index, min_node = self.find_minimum()
         self.append_to_result(min_node)
         self.currents[min_index] = min_node.next
+        if min_node.next is None:
+            self.not_finished_lists_indexes.remove(min_index)
 
     def find_minimum(self):
         min_index = -1
         min_value = float('inf')
         min_node = None
-        for index, node in enumerate(self.currents):
-            if node is not None and node.val < min_value:
+        for index in self.not_finished_lists_indexes:
+            node = self.currents[index]
+            if node.val < min_value:
                 min_value = node.val
                 min_index = index
                 min_node = node
